@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="display.html">
+    <title>Document</title>
+</head>
+<body>
+       <form action="#">
+        <label for="name">Name : </label>
+        <input type="text" id="name" placeholder="Enter the name">
+        
+        <label for="email">Email : </label>
+        <input type="text" id="email" placeholder="Enter the email">
+        
+        <button onclick="Addtodisplay()">
+            <a href="display.html">
+              Submit
+            </a>
+        </button>
+       </form>
+
+     <script>
+        function Addtodisplay(){
+          const studentName = document.getElementById("name").value;
+          const studentEmail = document.getElementById("email").value;
+
+          localStorage.setItem("Name",studentName);
+          localStorage.setItem("Email" , studentEmail);
+        }
+
+     </script>
+    
+</body>
+</html>

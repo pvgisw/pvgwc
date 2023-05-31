@@ -1,0 +1,84 @@
+Cmd: 
+
+npm install -g @angular/cli
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+ng new filename
+cd filename
+ng generate component register/login/display
+
+register.html :
+
+<div class="registerform>
+ <input type="name" #name placeholder="name">
+ <input type="email" #email placeholder="email">
+ <input type="password" #password placeholder="password">
+<button (click)="submit(name.value,email.value,password.value)">submit<button>
+</div>
+
+register.ts
+
+submit(name:string,email:string,password:string){
+	localStorage.setItem("name",name);
+	localStorage.setItem("name",name);
+	localStorage.setItem("name",name);
+}
+
+
+login.html :
+
+<div class="registerform">
+ 	<input type="name" #name placeholder="name">
+	 <input type="email" #email placeholder="email">
+	 <input type="password" #password placeholder="password">
+	<button (click)="check(name.value,email.value,password.value)">submit</button>
+</div>
+
+
+login.ts
+
+check(name:string,email:string,password:string){
+	const reg_name=localStorage.getItem("name");
+	const reg_email=localStorage.getItem("email");
+	const reg_password=localStorage.getItem("password");
+
+ if(reg_name==name && reg_email==email && reg_password==password){
+	alert("Successful")
+} else{
+	alert("Invalid")
+}
+}
+
+display.html:
+
+<div class="display">
+    <button (click)="display_data()">Dislay</button>
+    <p id="name"></p>
+    <p id="email"></p>
+    <p id="password"></p>
+
+</div>
+
+
+display.ts :
+
+display_data(){
+  const dis_name=document.getElementById("name");
+  const dis_email=document.getElementById("email");
+  const dis_password=document.getElementById("password");
+
+  if(dis_name){
+    dis_name.innerText="name " +localStorage.getItem("name");
+  }
+
+  if(dis_email){
+    dis_email.innerText="email: " +localStorage.getItem("email");
+
+  }
+
+  if(dis_password){
+    dis_password.innerText="password: " +localStorage.getItem("passwordS");
+  }
+}
+
+ng serve
+

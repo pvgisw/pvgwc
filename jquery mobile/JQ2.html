@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+
+<style>
+    
+</style>
+<body>
+    <center>
+        <h1>Cafe feedback form</h1>
+
+        <h4>
+            
+        </h4>
+    </center>
+
+    <div>
+        <center>
+            <form>
+
+                <div class="A">
+                    
+                <label for="taste">
+                    Taste
+                </label>
+
+                <select name="taste" id="taste" data-role="slider">
+
+                    <option value="bad">bad</option>
+                    <option value="good">good</option>
+                </select>
+
+                <label for="pricing">
+                    Pricing
+                </label>
+
+                <select name="pricing" id="pricing" data-role="slider">
+
+                    <option value="bad">bad</option>
+                    <option value="good">good</option>
+                </select>
+
+                </div>
+
+                <div class="B">
+                    <label for="ambiance">
+                        Ambiance
+                    </label>
+    
+                    <select name="ambiance" id="ambiance" data-role="slider">
+    
+                        <option value="bad">bad</option>
+                        <option value="good">good</option>
+                    </select>
+    
+                    <label for="qos">
+                        Quality of Service
+                    </label>
+    
+                    <select name="qos" id="qos" data-role="slider">
+    
+                        <option value="bad">bad</option>
+                        <option value="good">good</option>
+                    </select>
+    
+                    <label for="accessibility">
+                        Accessibility
+                    </label>
+    
+                    <select name="accessibility" id="accessibility" data-role="slider">
+    
+                        <option value="bad">bad</option>
+                        <option value="good">good</option>
+                    </select>
+                </div>
+
+
+                <div class="C">
+                    <label for="healthy_food">
+                        Healthy Food
+                    </label>
+    
+                    <select name="healthy_food" id="healthy_food" data-role="slider">
+    
+                        <option value="bad">bad</option>
+                        <option value="good">good</option>
+                    </select>
+    
+                    <label for="overall_satisfaction">
+                        Overall Satisfaction
+                    </label>
+    
+                    <select name="overall_satisfaction" id="overall_satisfaction" data-role="slider">
+    
+                        <option value="bad">bad</option>
+                        <option value="good">good</option>
+                    </select>
+    
+    
+                </div>
+                
+                
+            </form>
+
+            <button style="height: 55px;width: 125px;background-color: greenyellow;" onclick="submitForm()">Submit</button>
+        </center>
+
+    </div>
+</body>
+
+<script>
+    function submitForm() {
+  // Get the values of the select elements
+  const qotValue = $('#taste').val();
+  const courseMaterialValue = $('#pricing').val();
+  const classSizeValue = $('#ambiance').val();
+  const campusFacilitiesValue = $('#qos').val();
+  const academicSupportValue = $('#accessibility').val();
+  const extracurricularValue = $('#healthy_food').val();
+  const overallSatisfactionValue = $('#overall_satisfaction').val();
+
+  // Save the values to local storage
+  localStorage.setItem('taste', qotValue);
+  localStorage.setItem('pricing', courseMaterialValue);
+  localStorage.setItem('ambiance', classSizeValue);
+  localStorage.setItem('qos', campusFacilitiesValue);
+  localStorage.setItem('accessibility', academicSupportValue);
+  localStorage.setItem('healthy_food', extracurricularValue);
+  localStorage.setItem('overallSatisfaction', overallSatisfactionValue);
+}
+
+</script>
+</html>

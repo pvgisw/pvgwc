@@ -1,0 +1,145 @@
+NodeJS Application
+##index.js
+const express = require("express")
+const app = express();
+
+const port = 3000; // Port number
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`) ;
+});
+
+app.get('/', (req, res) => {
+    res.sendFile("./public/newForm.html",{root:__dirname})
+  });
+
+app.get('/showData', (req, res) => {
+    // res.send('Hello, World!');
+    res.sendFile("./public/data.html",{root:__dirname})
+  });
+
+app.get('/ganesh',(a,b) => {
+  b.send('Jai Ganesh !');
+})
+
+
+
+
+##index.js
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Form</title>
+</head>
+
+<style>
+    body,
+    .bottom {
+        text-align: center;
+    }
+
+    form {
+        text-align: left;
+    }
+
+    .container {
+        margin: 10px;
+        padding: 10px 20px;
+        display: inline-block;
+        border: 2px solid black;
+        background-color: rgb(225, 197, 154);
+        border-radius: 5px;
+    }
+
+    .hobbie {
+        display: inline-block;
+        text-align: left;
+    }
+</style>
+
+<body>
+    <h1>Student Regestration form</h1>
+
+    <div class="container">
+
+        <form >
+
+            <label for="fname">Name : </label>
+            <input type="text" id="name" name="fname" placeholder="Enter your name" ><br><br>
+            <label for="email">Email : </label>
+            <input type="email" id="email" name="Email" placeholder="Enter your email "><br><br>
+
+            <label for="date">DOB : </label> <input type="date" > <br><br>
+            <label for="">Mob.No : </label> <input type="number" id="mobNo"> <br><br>
+            <label for="">Gender: </label> <br>
+            <input type="radio" name="gender"> <label for="">Male</label>
+            <input type="radio" name="gender"> <label for="">Female</label><br><br>
+            <label for="">Address:</label>
+            <textarea name="" id="address" cols="20" rows="4"></textarea>
+            <br><br>
+
+            <div class="hobbie">
+
+                <label for="">Hobbies : </label><br>
+                <div class="hobi1">
+                    <input type="checkbox"><label for="">Coding</label>
+                    <input type="checkbox"><label for="">Drawing</label>
+                    <input type="checkbox"><label for="">Gaming</label>
+                </div>
+
+                <div class="hobi2">
+                    <input type="checkbox"><label for="">Swimming</label>
+                    <input type="checkbox"><label for="">other</label> <input type="text">
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="courses">
+                <label for="">Course applied for </label><br>
+                <input type="radio" name="course"> <label for="">Information Technology</label><br>
+                <input type="radio" name="course"> <label for="">Computer Science</label><br>
+                <input type="radio" name="course"> <label for="">Electronics & Telecommunication </label>
+            </div>
+
+            <br><br>
+
+            <div class="bottom">
+                <!-- <input type="submit" onclick="display()"> -->
+                <!-- <button onclick="AddData()"><a href="./public/data.html">Submit</a></button> -->
+                <button onclick="AddData()"><a href="/showData">Submit</a></button>
+                <input type="reset">
+            </div>
+        </form>
+    </div>
+
+    <script>
+
+        function AddData()
+        {
+            const studentName = document.getElementById("name").value;
+            const studentEmail = document.getElementById("email").value;
+            const studentMob = document.getElementById("mobNo").value;
+            const studentAddr = document.getElementById("address").value;
+
+            localStorage.setItem("Name", studentName);
+            localStorage.setItem("Email", studentEmail);
+            localStorage.setItem("Mob", studentMob);
+            localStorage.setItem("Address", studentAddr);
+        }
+        console.log(name)
+        
+    </script>
+</body>
+
+</html>
+
+##steps to run
+1. npm init  -> package.json tayar
+2. npm install express -> package-lock.json+nodeModules tayar
+3. npm install -g nodemon
+4. to run ->nodemon index.js

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+</head>
+<body>
+    <div id="demo">
+    <h1>Clickthe button</h1>
+    <button type="button" onclick="load()">Change Content</button>
+</div>
+    <script>
+        function load(){
+            const http  = new XMLHttpRequest();
+            http.onload = function()
+                              {
+                                document.getElementById("demo").innerHTML = this.responseText;
+                              }
+            http.open("GET","ajax_info.txt")    ;
+            http.send();              
+    }
+    </script>
+    
+</body>
+</html>

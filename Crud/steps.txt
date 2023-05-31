@@ -1,0 +1,157 @@
+open the terminal and write command
+  1.  npm init
+       after then press enter 
+  2.  npm install express
+  3.  npm install mongodb
+  4.  npm install mongoose
+  5.  npm install -g nodemon
+Now create two files named index.js and module.js
+
+##index.js
+const express=require('express')
+const app=express()
+
+const mongoose=require('mongoose')
+const url='mongodb://127.0.0.1:27017/akashDB'
+const user=require('./module.js')
+
+mongoose.connect(url,{useNewUrlParser:true})
+const con=mongoose.connection
+
+con.on('open',function(){
+	console.log("connected...")
+})
+// mongodb://localhost:27017
+app.use(express.json())
+
+app.listen(9000,function(){
+	console.log("App is running")
+})
+
+
+app.get('/:id',async(req,res)=>{
+	try{
+		const oneUser=await user.findById(req.params.id)
+		res.json(oneUser)
+	}catch{
+		res.send("something went wrong")
+	}
+})
+
+app.put('/:id',async(req,res)=>{
+	try{
+
+		// res.send("get request")
+		const oneUser=await user.findById(req.params.id)
+		oneUser.name=req.body.name
+		oneUser.age=req.body.age
+		oneUser.email=req.body.email
+		oneUser.password=req.body.password
+
+		const u=await oneUser.save()
+		res.json(u)
+	}
+	catch{
+		res.send("something went wrong")
+	}
+})
+
+app.delete('/:id',async(req,res)=>{
+	try{
+
+		// res.send("get request")
+		const oneUser=await user.findById(req.params.id)
+		oneUser.deleteOne()
+		// const u=await oneUser.save()
+
+		
+		res.send("record deleted")
+	}catch{
+		res.send("something went wrong")
+	}
+})
+
+app.get('/',async(req,res)=>{
+	try{
+
+		// res.send("get request")
+		const allUsers=await user.find()
+		res.json(allUsers)
+	}catch{
+		res.send("something went wrong")
+	}
+})
+
+app.post('/',async (req,res)=>{
+	const newUser =new user({
+		name:req.body.name,
+		password:req.body.password,
+		email:req.body.email,
+		age:req.body.age
+	})
+	try{
+		const u=await newUser.save()
+		res.json(u)
+	}catch(err){
+		res.send("error")
+		console.log("error is "+err)
+	}
+})
+
+
+app.post('/login',async (req,res)=>{
+	
+	try{
+		
+		const dbUser=await user.findOne({name:req.body.name})
+		if(dbUser==null){
+			res.send("user not found")
+		}
+
+		if(dbUser.password==req.body.password){
+			res.send('login Successfull')
+		}else{
+			res.send("invalid credentials")
+			console(dbUser.password)
+		}
+	}
+	catch(err){
+		res.send("error")
+		console.log("error is "+err)
+	}
+})
+
+
+##module.js
+
+const mongoose=require('mongoose')
+
+const user= new mongoose.Schema({
+	name:{
+		type:String,
+		required:true
+	},
+	email:{
+		type:String,
+		required:true
+	},
+	password:{
+		type:String,
+		required:true
+	},
+	age:{
+		type:Number,
+		required:false
+	}
+})
+
+module.exports=mongoose.model('user',user)
+
+
+After then run the application by command 
+nodemon index.js
+
+Then go to extension and install thunder client 
+Then to go new request 
+Then type localhost 9000 and send 
+Further we can get , post,delete .Write the file in json
